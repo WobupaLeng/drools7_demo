@@ -3,6 +3,9 @@ package constant;
 import common.SingleIntEnum;
 
 public enum LiverDamageDose implements SingleIntEnum {
+    EACH(1, "每次剂量")
+    , DAILY(2, "每日剂量")
+    , FREQUENCY(3, "频次")
     ;
 
     LiverDamageDose(int value, String name) {

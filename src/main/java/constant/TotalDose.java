@@ -3,10 +3,10 @@ package constant;
 import common.SingleIntEnum;
 
 public enum TotalDose implements SingleIntEnum {
-    Multi_day_dosage(1, "多日用量")
-    , Daily_limit(2, "日限制量")
-    , Cumulative_dose(3, "积累剂量")
-    , Precise_dose(4, "精准剂量")
+    MULTI_DAY_DOSE(1, "多日剂量")
+    , DAILY_LIMIT_DOSE(2, "日限制剂量")
+    , CUMULATIVE_DOSE(3, "积累剂量")
+    , PRECISE_DOSE(4, "精准剂量")
     ;
 
     TotalDose(int value, String name) {

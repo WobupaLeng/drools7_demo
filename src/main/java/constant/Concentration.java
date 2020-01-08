@@ -12,8 +12,8 @@ public enum Concentration implements SingleIntEnum {
     3. 低于推荐浓度/高于推荐溶媒量：慎用。
     */
 
-    drug(1, "药品")
-    , solvent(2, "溶媒")
+    DRUG(1, "药品")
+    , SOLVENT(2, "溶媒")
     ;
 
     Concentration(int value, String name) {

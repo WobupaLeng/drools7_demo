@@ -4,8 +4,8 @@ import common.SingleIntEnum;
 
 public enum AgeStandard implements SingleIntEnum {
     CHILD(1, "儿童")
-    ,ELDERLY(2, "老年人")
-    ,ADULT(3,"成人")
+    , ELDERLY(2, "老年人")
+    , ADULT(3, "成人")
     ;
 
     private final String name;

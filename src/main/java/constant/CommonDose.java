@@ -14,10 +14,10 @@ public enum CommonDose implements SingleIntEnum {
       总量 = 单日 * 天数
     */
 
-    Each(1, "每次剂量")
-    ,daily(2, "每日剂量")
-    ,frequency(3,"频次")
-    ,Medication_days(4, "用药天数")
+    EACH(1, "每次剂量")
+    , DAILY(2, "每日剂量")
+    , FREQUENCY(3, "频次")
+    , MEDICATION_DAYS(4, "用药天数")
     ;
 
     CommonDose(int value, String name) {
