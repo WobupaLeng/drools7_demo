@@ -1,0 +1,7 @@
+package rules;
+
+rule "dose"
+agenda-group "dose"
+    when
+    then
+end

@@ -1,0 +1,8 @@
+package rules;
+dialect  "mvel"
+
+rule "drugTaboo"
+agenda-group "drugTaboo"
+    when
+    then
+end

@@ -1,0 +1,8 @@
+package rules;
+dialect  "mvel"
+
+rule "indication"
+agenda-group "indication"
+    when
+    then
+end

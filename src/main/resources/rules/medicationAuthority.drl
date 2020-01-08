@@ -1,0 +1,8 @@
+package rules;
+dialect  "mvel"
+
+rule "medicationAuthority"
+agenda-group "medicationAuthority"
+    when
+    then
+end
