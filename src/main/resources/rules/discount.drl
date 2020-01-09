@@ -1,5 +1,7 @@
 package rules;
 import model.Car;
+import common.Message;
+
 
 rule "car-discount>30"
 agenda-group "demo"
@@ -7,6 +9,7 @@ when
     $car : Car(person.age > 30)
     then
         $car.setDiscount(80);
+        Message.addMessage("iii", "80");
     end
 
 rule "car-discount<=30"
@@ -15,5 +18,6 @@ when
     $car : Car(person.age <= 30)
     then
         $car.setDiscount(90);
+         Message.addMessage("yyy", "90");
     end
 

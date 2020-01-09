@@ -16,14 +16,6 @@ public enum Gender implements SingleIntEnum {
         return this == FEMALE;
     }
 
-    public Gender judgeGender(int value) {
-        if (value == MALE.value)
-            return MALE;
-        if (value == FEMALE.value)
-            return FEMALE;
-        return UNKNOWN;
-    }
-
     private final int value;
     private final String name;
 

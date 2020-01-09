@@ -1,7 +1,9 @@
 package rules;
+import common.Message
 
 rule "dose"
-agenda-group "dose"
+agenda-group "demo"
     when
     then
+    Message.addMessage("zzz", "-10");
 end

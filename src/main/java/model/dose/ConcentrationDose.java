@@ -2,10 +2,19 @@ package model.dose;
 
 import common.CommonDose;
 import constant.FrequencyUnit;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-public class KidneyDamageDose extends CommonDose {
-    public static KidneyDamageDose create(FrequencyUnit unit, int eachDose, int frequency) {
-        KidneyDamageDose dose = new KidneyDamageDose();
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class ConcentrationDose extends CommonDose {
+    private int drugAmount;         //药量
+    private String solventName;     //溶媒
+    private int solventAmount;      //溶媒量
+    private int speed;              //补液速度
+
+    public static ConcentrationDose create(FrequencyUnit unit, int eachDose, int frequency) {
+        ConcentrationDose dose = new ConcentrationDose();
         if (eachDose <= 0) {
             dose.setDailyDose(-1);
         }

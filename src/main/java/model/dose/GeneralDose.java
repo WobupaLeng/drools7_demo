@@ -3,9 +3,9 @@ package model.dose;
 import common.CommonDose;
 import constant.FrequencyUnit;
 
-public class KidneyDamageDose extends CommonDose {
-    public static KidneyDamageDose create(FrequencyUnit unit, int eachDose, int frequency) {
-        KidneyDamageDose dose = new KidneyDamageDose();
+public class GeneralDose extends CommonDose {
+    public static GeneralDose create(FrequencyUnit unit, int eachDose, int frequency) {
+        GeneralDose dose = new GeneralDose();
         if (eachDose <= 0) {
             dose.setDailyDose(-1);
         }
