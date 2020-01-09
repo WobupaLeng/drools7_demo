@@ -11,12 +11,12 @@ public enum PatientId implements SingleIntEnum {
     private final int value;
     private final String name;
 
-    public boolean isPregnantWoman(int value) {
-        return value == PREGNANT_WOMAN.value;
+    public boolean isPregnantWoman() {
+        return this == PREGNANT_WOMAN;
     }
 
-    public boolean isPerioperative(int value) {
-        return value == PERIOPERATIVE.value;
+    public boolean isPerioperative() {
+        return this == PERIOPERATIVE;
     }
 
     PatientId(int value, String name) {

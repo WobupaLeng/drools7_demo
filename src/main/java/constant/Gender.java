@@ -8,12 +8,12 @@ public enum Gender implements SingleIntEnum {
     , UNKNOWN(3, "未知")
     ;
 
-    public boolean isMale(int value) {
-        return value == MALE.value;
+    public boolean isMale() {
+        return this == MALE;
     }
 
-    public boolean isFemale(int value) {
-        return value == FEMALE.value;
+    public boolean isFemale() {
+        return this == FEMALE;
     }
 
     public Gender judgeGender(int value) {

@@ -2,7 +2,7 @@ package rules;
 import model.Car;
 
 rule "car-discount>30"
-agenda-group "dose"
+agenda-group "demo"
 when
     $car : Car(person.age > 30)
     then
@@ -10,7 +10,7 @@ when
     end
 
 rule "car-discount<=30"
-agenda-group "dose"
+agenda-group "demo"
 when
     $car : Car(person.age <= 30)
     then
