@@ -51,7 +51,7 @@ public class Demo {
         drugs.add(Drug.create("血必净注射液",
                 Arrays.asList("多器官功能失常综合症", "全身炎症反应综合症"),
                 Collections.emptyList(),
-                DrugTaboo.create(false, true, true, false, false, Collections.emptyList()),
+                DrugTaboo.create(false, true, true, false, false, Arrays.asList("过敏体质")),
                 GeneralDose.create(FrequencyUnit.UNKNOWN, 0, 0, 0),
                 Arrays.asList(concentrationDose),
                 KidneyDamageDose.create(FrequencyUnit.UNKNOWN, 0, 0),
