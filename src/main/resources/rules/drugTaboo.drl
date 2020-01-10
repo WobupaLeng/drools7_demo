@@ -1,8 +1,13 @@
 package rules;
-dialect  "mvel"
+import common.Message
+import model.Drug
+dialect  "java"
 
 rule "drugTaboo"
 agenda-group "drugTaboo"
     when
+
     then
+    Message.addMessage("drugTaboo", "药品中有禁忌不适用该患者");
 end
+

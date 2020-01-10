@@ -1,7 +1,6 @@
 package model;
 
 import lombok.Data;
-import model.dose.*;
 
 import java.util.Collection;
 
@@ -16,6 +15,9 @@ public class Prescription {
         Prescription prescription = new Prescription();
         prescription.authorizedMedication = drugs.stream().allMatch(Drug::isMedicationAuthority);
         prescription.drugCount = drugs.size();
+        prescription.drugs = drugs;
         return prescription;
     }
+
+
 }

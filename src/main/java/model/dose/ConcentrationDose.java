@@ -1,42 +1,41 @@
 package model.dose;
 
-import common.CommonDose;
 import constant.FrequencyUnit;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class ConcentrationDose extends CommonDose {
-    private int drugAmount;         //药量
-    private String solventName;     //溶媒
-    private int solventAmount;      //溶媒量
-    private int speed;              //补液速度
+public class ConcentrationDose {
+    private int solventAmount;                  //溶媒量
+    private int speed;                          //补液速度
+    private String solventName;                 //溶媒
 
-    public static ConcentrationDose create(FrequencyUnit unit, int eachDose, int frequency) {
+    private int eachDose;                   //每次剂量
+    private int dailyDose;                  //每日剂量
+    private int frequency;                  //频率次数
+    private FrequencyUnit frequencyUnit;    //频率单位
+    private int medicationDays;             //用药天数
+
+    private int multiDayDose;      //多日剂量
+    private int dailyLimitDose;    //日限制剂量
+    private int cumulativeDose;    //积累剂量
+
+    public static ConcentrationDose create(FrequencyUnit unit, int eachDose, int frequency, int medicationDays) {
         ConcentrationDose dose = new ConcentrationDose();
-        if (eachDose <= 0) {
-            dose.setDailyDose(-1);
-        }
+        dose.dailyDose = unit.getDailyDose(frequency, eachDose);
+        dose.eachDose = eachDose;
+        dose.frequency = frequency;
+        dose.frequencyUnit = unit;
+        dose.medicationDays = medicationDays;
 
-        if (unit.canEveryMinute()) {
-            dose.setDailyDose(eachDose * 3600 * 24 * frequency);
+        if (medicationDays <= 0) {
+            dose.multiDayDose = 0;
+            dose.dailyLimitDose = 0;
+            dose.cumulativeDose = 0;
+        } else {
+            dose.multiDayDose = dose.dailyDose * dose.medicationDays;
+            dose.dailyLimitDose = dose.dailyDose;
+            dose.cumulativeDose = dose.dailyDose * dose.medicationDays;
         }
-        if (unit.canPerHour()) {
-            dose.setDailyDose(eachDose * 24 * frequency);
-        }
-        if (unit.canEveryDay()) {
-            dose.setDailyDose(eachDose * frequency);
-        }
-        if (unit.canPerMonth()) {
-            dose.setDailyDose(eachDose / 30 * frequency);
-        }
-        if (unit.canPerYear()) {
-            dose.setDailyDose(eachDose / 12 / 30 * frequency);
-        }
-        dose.setEachDose(eachDose);
-        dose.setFrequency(frequency);
-        dose.setFrequencyUnit(unit);
         return dose;
     }
 }

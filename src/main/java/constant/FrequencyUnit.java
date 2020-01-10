@@ -19,24 +19,24 @@ public enum FrequencyUnit implements SingleIntEnum {
         this.name = name;
     }
 
-    public boolean canEveryMinute() {
-        return this == EVERY_MINUTE;
-    }
-
-    public boolean canPerHour() {
-        return this == PER_HOUR;
-    }
-
-    public boolean canEveryDay() {
-        return this == EVERY_DAY;
-    }
-
-    public boolean canPerMonth() {
-        return this == PER_MONTH;
-    }
-
-    public boolean canPerYear() {
-        return this == PER_YEAR;
+    public int getDailyDose(int frequency, int eachDose) {
+        int dailyDose = -1;
+        if (this == EVERY_MINUTE) {
+            dailyDose = (eachDose * 3600 * 24 * frequency);
+        }
+        if (this == PER_HOUR) {
+            dailyDose = (eachDose * 24 * frequency);
+        }
+        if (this == EVERY_DAY) {
+            dailyDose = (eachDose * frequency);
+        }
+        if (this == PER_MONTH) {
+            dailyDose = (eachDose / 30 * frequency);
+        }
+        if (this == PER_YEAR) {
+            dailyDose = (eachDose / 12 / 30 * frequency);
+        }
+        return dailyDose;
     }
 
     public int getValue() {

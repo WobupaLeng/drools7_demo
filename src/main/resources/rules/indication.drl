@@ -1,8 +1,11 @@
 package rules;
-dialect  "mvel"
+import common.Message
+import model.Prescription
+dialect  "java"
 
 rule "indication"
 agenda-group "indication"
     when
     then
+        Message.addMessage("indication", "处方没有该疾病的适用症");
 end

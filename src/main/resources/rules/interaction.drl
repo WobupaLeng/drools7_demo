@@ -1,8 +1,13 @@
 package rules;
-dialect  "mvel"
+import common.Message
+import model.Prescription
+import service.JudgeService
+dialect  "java"
 
 rule "interaction"
 agenda-group "interaction"
     when
+        Prescription(JudgeService.judgeInteraction(getDrugs()))
     then
+        Message.addMessage("interaction", "处方中的药品有不良的相互作用关系");
 end

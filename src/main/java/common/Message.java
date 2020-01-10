@@ -7,6 +7,6 @@ public class Message {
     public static Map<String, String> messages = new HashMap<>();
 
     public static void addMessage(String rule, String desc) {
-        messages.put(rule, desc);
+        messages.put("审核不通过->" + rule, desc);
     }
 }

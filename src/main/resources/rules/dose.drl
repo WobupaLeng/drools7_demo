@@ -1,9 +1,10 @@
 package rules;
 import common.Message
+import model.Prescription
 
 rule "dose"
-agenda-group "demo"
+agenda-group "dose"
     when
     then
-    Message.addMessage("zzz", "-10");
+        Message.addMessage("dose", "处方中剂量超过药品的推荐剂量");
 end

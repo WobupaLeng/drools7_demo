@@ -1,8 +1,12 @@
 package rules;
-dialect  "mvel"
+import common.Message
+import model.Patient
+dialect  "java"
 
 rule "patient"
 agenda-group "patient"
     when
+
     then
+        Message.addMessage("patient", "患者对处方中的药品有过敏表现");
 end
