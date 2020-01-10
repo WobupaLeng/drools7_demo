@@ -1,13 +1,13 @@
 package rules;
 import common.Message
-import model.Drug
+import model.Prescription
 dialect  "java"
 
 rule "drugTaboo"
-agenda-group "drugTaboo"
+agenda-group "drugAndPatient"
     when
-
+        Prescription(!isDrugTabooReasonable())
     then
-    Message.addMessage("drugTaboo", "药品中有禁忌不适用该患者");
+        Message.addMessage("drugTaboo", "药品中有禁忌不适用该患者");
 end
 

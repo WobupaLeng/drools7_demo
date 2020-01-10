@@ -1,0 +1,12 @@
+package rules;
+import common.Message
+import model.Prescription
+dialect  "java"
+
+rule "drugCount"
+agenda-group "drug"
+    when
+        Prescription(drugCount > 5)
+    then
+        Message.addMessage("drugCount", "处方中药品数量超过5种");
+end

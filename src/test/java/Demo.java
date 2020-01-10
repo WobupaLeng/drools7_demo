@@ -18,6 +18,7 @@ import org.kie.api.runtime.KieSession;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class Demo {
@@ -37,10 +38,7 @@ public class Demo {
 
     @Test
     public void test() {
-        Patient patient = new Patient();
-        patient.setAge(20);
-        patient.setGender(Gender.MALE);
-        patient.setPatientId(PatientId.OTHER);
+        Patient patient = Patient.create(PatientId.OTHER, Gender.MALE, 20);
         patient.setDiseases(Arrays.asList("发烧", "多器官功能失常综合症"));
         patient.setAllergies(Arrays.asList("咖啡因", "过敏体质"));
 
@@ -52,20 +50,20 @@ public class Demo {
         concentrationDose.setSolventName("0.9%氯化钠注射液");
         drugs.add(Drug.create("血必净注射液",
                 Arrays.asList("多器官功能失常综合症", "全身炎症反应综合症"),
-                Arrays.asList(StringUtils.EMPTY),
-                DrugTaboo.create(false, true, true, false, false),
+                Collections.emptyList(),
+                DrugTaboo.create(false, true, true, false, false, Collections.emptyList()),
                 GeneralDose.create(FrequencyUnit.UNKNOWN, 0, 0, 0),
                 Arrays.asList(concentrationDose),
                 KidneyDamageDose.create(FrequencyUnit.UNKNOWN, 0, 0),
                 LiverDamageDose.create(FrequencyUnit.UNKNOWN, 0, 0),
-                false
+                true
         ));
 
         GeneralDose generalDose = GeneralDose.create(FrequencyUnit.EVERY_DAY, 1, 2, -1);
         drugs.add(Drug.create("去痛片",
                 Arrays.asList("发热", "疼痛"),
                 Arrays.asList("氨基比林", "非那西丁", "咖啡因", "苯巴比妥"),
-                DrugTaboo.create(false, false, false, false, true),
+                DrugTaboo.create(false, false, false, true, false, Collections.emptyList()),
                 generalDose,
                 Arrays.asList(ConcentrationDose.create(FrequencyUnit.UNKNOWN, 0, 0, 0)),
                 KidneyDamageDose.create(FrequencyUnit.UNKNOWN, 0, 0),
@@ -75,8 +73,8 @@ public class Demo {
 
         drugs.add(Drug.create("维生素BT片",
                 Arrays.asList("腹胀", "嗳气", "恶心", "胃灼热"),
-                Arrays.asList(StringUtils.EMPTY),
-                DrugTaboo.create(false, false, false, false, false),
+                Collections.emptyList(),
+                DrugTaboo.create(false, false, false, false, false, Collections.emptyList()),
                 generalDose,
                 Arrays.asList(ConcentrationDose.create(FrequencyUnit.UNKNOWN, 0, 0, -1)),
                 KidneyDamageDose.create(FrequencyUnit.UNKNOWN, 0, 0),
@@ -84,15 +82,11 @@ public class Demo {
                 true
         ));
 
-        Prescription prescription = Prescription.create(drugs);
-        prescription.setPatient(patient);
-
-        //doseReview(prescription);                   //剂量
-        //drugTabooReview(prescription);   //禁忌
-        //indicationReview(prescription);  //适应症
-        interactionReview(prescription); //相互作用
-        medicationAuthorityReview(prescription);    //用药权限
-        patientReview(prescription.getPatient());   //患者身份
+        Prescription prescription = Prescription.create(drugs,patient);
+        doseReview(prescription);
+        drugAndPatientReview(prescription);
+        drugReview(prescription);
+        allergyReview(prescription);
 
         if (Message.messages.size() <= 0) System.out.println("审核通过");
         Message.messages.forEach((k, v) -> System.out.println(k + "     " + v));
@@ -105,39 +99,24 @@ public class Demo {
         kieSession.dispose();
     }
 
-    private void drugTabooReview(Prescription prescription) {
-        KieSession kieSession = getSession("drugTaboo");
+    private void drugAndPatientReview(Prescription prescription) {
+        KieSession kieSession = getSession("drugAndPatient");
         kieSession.insert(prescription);
         kieSession.fireAllRules();
         kieSession.dispose();
     }
 
-    private void indicationReview(Prescription prescription) {
-        KieSession kieSession = getSession("indication");
+    private void drugReview(Prescription prescription) {
+        KieSession kieSession = getSession("drug");
         kieSession.insert(prescription);
         kieSession.fireAllRules();
         kieSession.dispose();
     }
 
-    private void interactionReview(Prescription prescription) {
-        KieSession kieSession = getSession("interaction");
-        kieSession.insert(prescription);
-        kieSession.fireAllRules();
-        kieSession.dispose();
-    }
-
-    private void medicationAuthorityReview(Prescription prescription) {
-        KieSession kieSession = getSession("medicationAuthority");
-        kieSession.insert(prescription);
-        kieSession.fireAllRules();
-        kieSession.dispose();
-    }
-
-    private void patientReview(Patient patient) {
+    private void allergyReview(Prescription prescription) {
         KieSession kieSession = getSession("patient");
-        kieSession.insert(patient);
+        kieSession.insert(prescription);
         kieSession.fireAllRules();
         kieSession.dispose();
     }
-
 }

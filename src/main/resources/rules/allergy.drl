@@ -1,12 +1,12 @@
 package rules;
 import common.Message
-import model.Patient
+import model.Prescription
 dialect  "java"
 
-rule "patient"
+rule "allergy"
 agenda-group "patient"
     when
-
+        Prescription(!isAllergyReasonable())
     then
         Message.addMessage("patient", "患者对处方中的药品有过敏表现");
 end

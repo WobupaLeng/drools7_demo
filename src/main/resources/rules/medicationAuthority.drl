@@ -1,21 +1,12 @@
 package rules;
 import common.Message
 import model.Prescription
-import service.JudgeService
 dialect  "java"
 
 rule "medicationAuthority"
-agenda-group "medicationAuthority"
+agenda-group "drug"
     when
-        $p: Prescription(!isAuthorizedMedication())
+        Prescription(!isAuthorizedMedication())
     then
         Message.addMessage("medicationAuthority", "处方中有药品没有使用权限");
-end
-
-rule "drugCount"
-agenda-group "medicationAuthority"
-    when
-        $p: Prescription(drugCount > 5)
-    then
-        Message.addMessage("drugCount", "处方中药品数量超过5种");
 end

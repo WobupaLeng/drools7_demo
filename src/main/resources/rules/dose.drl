@@ -5,6 +5,7 @@ import model.Prescription
 rule "dose"
 agenda-group "dose"
     when
+        Prescription(!isDoseReasonable())
     then
         Message.addMessage("dose", "处方中剂量超过药品的推荐剂量");
 end

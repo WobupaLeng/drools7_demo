@@ -4,8 +4,9 @@ import model.Prescription
 dialect  "java"
 
 rule "indication"
-agenda-group "indication"
+agenda-group "drugAndPatient"
     when
+        Prescription(!isIndicationReasonable())
     then
         Message.addMessage("indication", "处方没有该疾病的适用症");
 end
