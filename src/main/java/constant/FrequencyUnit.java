@@ -8,7 +8,7 @@ public enum FrequencyUnit implements SingleIntEnum {
         public int getDailyDose(int frequency, int eachDose) {
             return eachDose * 60 * 24 * frequency;
         }
-    }, PER_HOUR(2, "每小时") {
+    }, EVERY_HOUR(2, "每小时") {
         @Override
         public int getDailyDose(int frequency, int eachDose) {
             return eachDose * 24 * frequency;
@@ -18,12 +18,12 @@ public enum FrequencyUnit implements SingleIntEnum {
         public int getDailyDose(int frequency, int eachDose) {
             return eachDose * frequency;
         }
-    }, PER_MONTH(4, "每月") {
+    }, EVERY_MONTH(4, "每月") {
         @Override
         public int getDailyDose(int frequency, int eachDose) {
             return eachDose / 30 * frequency;
         }
-    }, PER_YEAR(5, "每年") {
+    }, EVERY_YEAR(5, "每年") {
         @Override
         public int getDailyDose(int frequency, int eachDose) {
             return eachDose / 12 / 30 * frequency;
