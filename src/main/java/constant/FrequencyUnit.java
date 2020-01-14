@@ -6,7 +6,7 @@ public enum FrequencyUnit implements SingleIntEnum {
     EVERY_MINUTE(1, "每分钟") {
         @Override
         public int getDailyDose(int frequency, int eachDose) {
-            return eachDose * 3600 * 24 * frequency;
+            return eachDose * 60 * 24 * frequency;
         }
     }, PER_HOUR(2, "每小时") {
         @Override
